@@ -11,6 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Quiz335.Data;
 
 namespace Quiz335
 {
@@ -26,7 +31,7 @@ namespace Quiz335
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<WebAPIQuiz335DBContext>(options => options.UseSqlite(Configuration.GetConnectionString("Quiz335Connection")));
             services.AddControllers();           
         }
 
