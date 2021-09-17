@@ -32,7 +32,8 @@ namespace Quiz335
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WebAPIQuiz335DBContext>(options => options.UseSqlite(Configuration.GetConnectionString("Quiz335Connection")));
-            services.AddControllers();           
+            services.AddControllers();
+            services.AddScoped<IMarksAPIRepo, DBMarksAPIRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
