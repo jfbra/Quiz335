@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +29,6 @@ namespace Quiz335.Controllers
         }
 
         [HttpGet("GetMarkByID/{id}")]
-        [ActionName(nameof(GetMarkByIDAsync))]
         public async Task<ActionResult<MarksOutDto>> GetMarkByIDAsync(int id)
         {
             Marks mark = await _repository.GetMarkByIDAsync(id);
@@ -44,16 +42,12 @@ namespace Quiz335.Controllers
         }
 
         [HttpPost("SetMark")]
-        public async Task<ActionResult<MarksOutDto>> SetMarksAsync(MarksInDto marks)
+        public async Task<ActionResult<MarksInDto>> SetMarksAsync(MarksInDto marks)
         {
             Marks m = new Marks
             {
-                Id = marks.Id,
-                A1 = marks.A1,
-                A2 = marks.A2
-            };
-            await _repository.SetMarksAsync(m);
-            return CreatedAtAction(actionName: nameof(GetMarkByIDAsync), new { id = marks.Id.ToString() }, m);
+
+            }
         }
     }
 }
