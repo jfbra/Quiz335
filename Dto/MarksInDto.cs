@@ -10,7 +10,7 @@ namespace Quiz335.Dto
     {
         [Required]
         public int Id { get; set; }
-        public string A1 { get; set; }
-        public string A2 { get; set; }
+        public float A1 { get; set; }
+        public float A2 { get; set; }
     }
 }

@@ -27,5 +27,29 @@ namespace Quiz335.Data
             Marks mark = _dbContext.Marks.FirstOrDefault(e => e.Id == id);
             return mark;
         }
+
+        public async Task<Marks> SetMarksAsync(Marks mark)
+        {
+            Marks record = _dbContext.Marks.FirstOrDefault(e => e.Id == mark.Id);
+            if (record == null)
+            {
+                ValueTask<EntityEntry<Marks>> m = _dbContext.Marks.AddAsync(mark);
+                await m;
+                await _dbContext.SaveChangesAsync();
+                return m.Result.Entity;
+            }
+            else
+            {
+                record.A1 = mark.A1;
+                record.A2 = mark.A2;
+                await _dbContext.SaveChangesAsync();
+                return record;
+            } 
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
